@@ -1,0 +1,151 @@
+{
+  "mappings": {
+    "newsale": {
+      "_all": {
+        "enabled": false
+      },
+      "properties": {
+        "skucode": {
+          "type": "keyword"
+        },
+        "skuname": {
+          "analyzer": "ik_smart",
+          "type": "text"
+        },
+        "skucontent": {
+          "analyzer": "ik_smart",
+          "type": "text"
+        },
+        "suppliercode": {
+          "type": "keyword"
+        },
+        "suppliername": {
+          "type": "keyword"
+        },
+        "supplierskucode": {
+          "type": "keyword"
+        },
+        "termskucode": {
+          "type": "keyword"
+        },
+        "termcolorid": {
+          "type": "keyword"
+        },
+        "issystem": {
+          "type": "keyword"
+        },
+        "firstcategorycode": {
+          "type": "keyword"
+        },
+        "secondcategorycode": {
+          "type": "keyword"
+        },
+        "thirdcategorycode": {
+          "type": "keyword"
+        },
+        "brandcode": {
+          "type": "keyword"
+        },
+        "modelcode": {
+          "type": "keyword"
+        },
+        "spucode": {
+          "type": "keyword"
+        },
+        "status": {
+          "type": "keyword"
+        },
+        "originplace": {
+          "type": "keyword"
+        },
+        "createoperid": {
+          "type": "keyword"
+        },
+        "guideprice": {
+          "type": "long"
+        },
+        "purchaseprice": {
+          "type": "long"
+        },
+        "grossprofitmargin": {
+          "type": "long"
+        },
+        "publishedtime": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "createtime": {
+          "type": "date",
+          "format": "yyyy-MM-dd HH:mm:ss"
+        },
+        "buytotalnum": {
+          "type": "keyword"
+        },
+        "mainpicurl": {
+          "type": "keyword"
+        },
+        "upclist": {
+          "properties": {
+            "skucode": {
+              "type": "keyword"
+            },
+            "upccode": {
+              "type": "keyword"
+            }
+          }
+        },
+        "attributelist": {
+          "properties": {
+            "skucode": {
+              "type": "keyword"
+            },
+            "attributetype": {
+              "type": "keyword"
+            },
+            "attributecode": {
+              "type": "keyword"
+            },
+            "attributename": {
+              "type": "keyword"
+            },
+            "attributevaluecode": {
+              "type": "keyword"
+            },
+            "attributevalue": {
+              "type": "keyword"
+            },
+            "attributeflag": {
+              "type": "keyword"
+            }
+          }
+        },
+        "picturelist": {
+          "properties": {
+            "skucode": {
+              "type": "keyword"
+            },
+            "picturetype": {
+              "type": "keyword"
+            },
+            "pictureurl": {
+              "type": "text"
+            },
+            "sort": {
+              "type": "keyword"
+            }
+          }
+        }
+      }
+    }
+  },
+  "settings": {
+    "max_result_window": "2000000",
+    "analysis": {
+      "analyzer": {
+        "ik": {
+          "tokenizer": "ik_smart"
+        }
+      }
+    }
+  }
+}

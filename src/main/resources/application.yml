@@ -1,0 +1,24 @@
+
+server:
+  port: 8012
+  ssl:
+    key-store: keystore.p12
+    key-store-password: 123456
+    key-password: 123456
+#    trust-store: d:\tomcat.keystor
+#    trust-store-password: 123456
+#    protocol: TLS
+  undertow:
+    accesslog:
+      enabled: true
+      dir: ./log
+    io-threads: 4
+    worker-threads: 32
+    buffer-size: 1024
+    max-http-post-size: 0
+  http2:
+    enabled: true
+
+spring:
+  profiles:
+    active: dev
