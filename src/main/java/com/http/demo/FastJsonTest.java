@@ -23,7 +23,7 @@ public class FastJsonTest {
 
     }
 
-    private static Object parse(Document doc) {
+    private static void parse(Document doc) {
 
         Map<String, Map<String, Object>> map = new HashMap<String, Map<String, Object>>();
 //      JSONObject map = new JSONObject();
@@ -33,7 +33,7 @@ public class FastJsonTest {
             try {
                 String tid = element.attr("data-item-id");
                 String content = element.select("p.js-tweet-text").text();
-                String time = Long.valueOf(element.select("a.tweet-timestamp span").attr("data-time")) * 1000 + "";
+                String time = Long.parseLong(element.select("a.tweet-timestamp span").attr("data-time")) * 1000 + "";
 //              Map<String,Object> j = new HashMap<String, Object>();
                 JSONObject j = new JSONObject();
                 j.put("id", tid);
@@ -47,7 +47,6 @@ public class FastJsonTest {
 
         System.out.println(map);
 
-        return map;
     }
 
 }
