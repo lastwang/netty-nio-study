@@ -68,28 +68,7 @@ public class GroupServer {
                         }
 
                         if (key.isReadable()) {
-                            ByteBuffer attachment = (ByteBuffer) key.attachment();
-                            SocketChannel clientSocket = (SocketChannel) key.channel();
-
-                            List<Byte> chat = new ArrayList<>();
-                            attachment.clear();
-                            while (clientSocket.read(attachment) != -1) {
-
-                                attachment.flip();
-                                for (int i = 0; i < attachment.limit(); i++) {
-                                    chat.add(attachment.get());
-                                }
-
-                                attachment.clear();
-                            }
-
-                            byte[] msg = new byte[chat.size()];
-                            for (int i = 0; i < chat.size(); i++) {
-                                msg[i] = chat.get(i);
-                            }
-                            log.info("{}发送信息是:{}", clientSocket.getRemoteAddress(), new String(msg));
-
-                            clientSocket.close();
+                            readDate(key);
                         }
                     }
 
@@ -113,43 +92,42 @@ public class GroupServer {
         try {
             List<Byte> chat = new ArrayList<>();
             attachment.clear();
-            while (clientSocket.read(attachment) != -1) {
+            int read = clientSocket.read(attachment);
+            if (read < 0) {
+                key.cancel();
+            } else if (read > 0) {
 
                 attachment.flip();
                 for (int i = 0; i < attachment.limit(); i++) {
                     chat.add(attachment.get());
                 }
 
-                attachment.clear();
-            }
-
-            byte[] msg = new byte[chat.size()];
-            for (int i = 0; i < chat.size(); i++) {
-                msg[i] = chat.get(i);
-            }
-            String msgStr = new String(msg);
-            log.info("{}发送信息是:{}", clientSocket.getRemoteAddress(), msgStr);
-
-            // 给其他客户端发送消息
-            sendMsgToOtherClient(msgStr, clientSocket);
-
-
-        } catch (IOException e) {
-            log.error("客户端数据读取错误", e);
-        } finally {
-            if (clientSocket != null) {
-                try {
-                    clientSocket.close();
-                } catch (IOException e) {
-                    log.error("客户端关闭错误", e);
+                byte[] msg = new byte[chat.size()];
+                for (int i = 0; i < chat.size(); i++) {
+                    msg[i] = chat.get(i);
                 }
+                String msgStr = new String(msg);
+                log.info("{}发送信息是:{}", clientSocket.getRemoteAddress(), msgStr);
+
+                // 给其他客户端发送消息
+                sendMsgToOtherClient(msgStr, clientSocket);
             }
+        } catch (IOException e) {
+            try {
+                log.error("客户端{}:离线了",clientSocket.getRemoteAddress(), e);
+                key.cancel();
+                clientSocket.close();
+            } catch (IOException ex) {
+                log.error("客户端错误!",ex);
+            }
+        } finally {
+
         }
 
 
     }
 
-    public void sendMsgToOtherClient(String msg, SocketChannel selfClient) {
+    public void sendMsgToOtherClient(String msg, SocketChannel selfClient) throws IOException {
         ByteBuffer msgBuffer = ByteBuffer.wrap(msg.getBytes());
 
         for (SelectionKey key : selector.keys()) {
@@ -159,21 +137,11 @@ public class GroupServer {
 
                 try {
                     ((SocketChannel) client).write(msgBuffer);
-                } catch (IOException e) {
-                    try {
-                        log.error("客户端{}离线了", ((SocketChannel) client).getLocalAddress(), e);
-                        // 取消注册
-                        key.cancel();
-                        client.close();
-                    } catch (IOException ex) {
-                        log.error("客户端错误", ex);
-                    }
                 } finally {
                     // 从零开始写
                     msgBuffer.clear();
                 }
             }
-
 
 
         }
