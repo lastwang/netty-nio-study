@@ -64,12 +64,14 @@ public class GroupServer {
                             socketChannel.configureBlocking(false);
 
                             socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
-
+                            log.info("{}上线了",socketChannel.getRemoteAddress());
                         }
 
                         if (key.isReadable()) {
                             readDate(key);
                         }
+
+                        iterator.remove();
                     }
 
 
@@ -128,6 +130,7 @@ public class GroupServer {
     }
 
     public void sendMsgToOtherClient(String msg, SocketChannel selfClient) throws IOException {
+        log.info("客户端{}:消息转发中",selfClient.getRemoteAddress());
         ByteBuffer msgBuffer = ByteBuffer.wrap(msg.getBytes());
 
         for (SelectionKey key : selector.keys()) {
