@@ -87,7 +87,7 @@ public class GroupServer {
 
     }
 
-    public void readDate(SelectionKey key) {
+    private void readDate(SelectionKey key) {
 
         ByteBuffer attachment = (ByteBuffer) key.attachment();
         SocketChannel clientSocket = (SocketChannel) key.channel();
@@ -122,14 +122,12 @@ public class GroupServer {
             } catch (IOException ex) {
                 log.error("客户端错误!",ex);
             }
-        } finally {
-
         }
 
 
     }
 
-    public void sendMsgToOtherClient(String msg, SocketChannel selfClient) throws IOException {
+    private void sendMsgToOtherClient(String msg, SocketChannel selfClient) throws IOException {
         log.info("客户端{}:消息转发中",selfClient.getRemoteAddress());
         ByteBuffer msgBuffer = ByteBuffer.wrap(msg.getBytes());
 
@@ -150,7 +148,7 @@ public class GroupServer {
         }
     }
 
-    public void close() {
+    private void close() {
         if (serverSocketChannel != null) {
             try {
                 serverSocketChannel.close();
