@@ -67,7 +67,7 @@ public class ClientBase {
         }
     }
 
-    protected void init(SocketAddress inetSocketAddress) throws IOException {
+    private void init(SocketAddress inetSocketAddress) throws IOException {
         if (!socketChannel.connect(inetSocketAddress)) {
             // 没有连接成功
             while (!socketChannel.finishConnect()) {
