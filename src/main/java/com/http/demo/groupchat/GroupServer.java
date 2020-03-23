@@ -82,11 +82,14 @@ public class GroupServer {
 
                                 attachment.clear();
                             }
+
                             byte[] msg = new byte[chat.size()];
                             for (int i = 0; i < chat.size(); i++) {
                                 msg[i] = chat.get(i);
                             }
                             log.info("{}发送信息是:{}", clientSocket.getRemoteAddress(), new String(msg));
+
+                            clientSocket.close();
                         }
                     }
 
