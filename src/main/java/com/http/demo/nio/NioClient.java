@@ -7,7 +7,7 @@ import java.nio.channels.SocketChannel;
 
 public class NioClient {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         try (SocketChannel socketChannel = SocketChannel.open()) {
 
@@ -32,11 +32,12 @@ public class NioClient {
             Thread.sleep(4000);
 
             socketChannel.write(byteBuffer3);
+            System.in.read();
 
         } catch (IOException | InterruptedException e) {
             e.printStackTrace();
         }
-
+//        System.in.read();
 
     }
 
