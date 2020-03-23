@@ -22,6 +22,12 @@ public class GroupServer {
 
     private static final int PORT = 9800;
 
+    public static void main(String[] args) {
+        GroupServer groupServer = new GroupServer();
+
+        groupServer.listen();
+    }
+
     public GroupServer() {
 
         try {
@@ -37,10 +43,7 @@ public class GroupServer {
 
         } catch (IOException e) {
             log.error("聊天服务器初始化失败!", e);
-        } finally {
-            close();
         }
-
     }
 
     /**
