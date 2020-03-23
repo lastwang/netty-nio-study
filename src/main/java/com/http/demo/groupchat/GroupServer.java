@@ -26,6 +26,8 @@ public class GroupServer {
         GroupServer groupServer = new GroupServer();
 
         groupServer.listen();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> groupServer.close()));
     }
 
     public GroupServer() {
