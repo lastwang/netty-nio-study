@@ -25,9 +25,10 @@ public class GroupServer {
     public static void main(String[] args) {
         GroupServer groupServer = new GroupServer();
 
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> groupServer.close()));
+
         groupServer.listen();
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> groupServer.close()));
     }
 
     public GroupServer() {
@@ -57,7 +58,7 @@ public class GroupServer {
                 int select = selector.select(1000);
 
                 if (select > 0) {
-                    Iterator<SelectionKey> iterator = selector.selectedKeys().iterator();
+                    Iterator <SelectionKey> iterator = selector.selectedKeys().iterator();
 
                     while (iterator.hasNext()) {
 
@@ -69,7 +70,7 @@ public class GroupServer {
                             socketChannel.configureBlocking(false);
 
                             socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
-                            log.info("{}上线了",socketChannel.getRemoteAddress());
+                            log.info("{}上线了", socketChannel.getRemoteAddress());
                         }
 
                         if (key.isReadable()) {
@@ -97,7 +98,7 @@ public class GroupServer {
         ByteBuffer attachment = (ByteBuffer) key.attachment();
         SocketChannel clientSocket = (SocketChannel) key.channel();
         try {
-            List<Byte> chat = new ArrayList<>();
+            List <Byte> chat = new ArrayList <>();
             attachment.clear();
             int read = clientSocket.read(attachment);
             if (read < 0) {
@@ -121,11 +122,11 @@ public class GroupServer {
             }
         } catch (IOException e) {
             try {
-                log.error("客户端{}:离线了",clientSocket.getRemoteAddress(), e);
+                log.error("客户端{}:离线了", clientSocket.getRemoteAddress(), e);
                 key.cancel();
                 clientSocket.close();
             } catch (IOException ex) {
-                log.error("客户端错误!",ex);
+                log.error("客户端错误!", ex);
             }
         }
 
@@ -133,20 +134,16 @@ public class GroupServer {
     }
 
     private void sendMsgToOtherClient(String msg, SocketChannel selfClient) throws IOException {
-        log.info("客户端{}:消息转发中",selfClient.getRemoteAddress());
-        ByteBuffer msgBuffer = ByteBuffer.wrap(msg.getBytes());
+        log.info("客户端{}:消息转发中", selfClient.getRemoteAddress());
 
         for (SelectionKey key : selector.keys()) {
             Channel client = key.channel();
 
             if (client instanceof SocketChannel && client != selfClient) {
 
-                try {
-                    ((SocketChannel) client).write(msgBuffer);
-                } finally {
-                    // 从零开始写
-                    msgBuffer.clear();
-                }
+                ByteBuffer msgBuffer = ByteBuffer.wrap(msg.getBytes());
+                ((SocketChannel) client).write(msgBuffer);
+
             }
 
 
@@ -168,5 +165,6 @@ public class GroupServer {
                 log.error("selector 关闭错误！", e);
             }
         }
+        log.info("通道关闭成功!");
     }
 }

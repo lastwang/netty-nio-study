@@ -7,20 +7,19 @@ import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketAddress;
 import java.nio.ByteBuffer;
-import java.nio.channels.SelectableChannel;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.SocketChannel;
 import java.util.Iterator;
 import java.util.Scanner;
 
-public class GroupClient {
+public class GroupClient2 {
 
-    private static final Logger log = LoggerFactory.getLogger(GroupClient.class);
+    private static final Logger log = LoggerFactory.getLogger(GroupClient2.class);
 
     private static final String HOST = "127.0.0.1";
 
-    private static final int PORT = 9801;
+    private static final int PORT = 9802;
 
     private static final int SERVER_PORT = 9800;
 
@@ -30,7 +29,7 @@ public class GroupClient {
 
     private String userName;
 
-    public GroupClient() {
+    public GroupClient2() {
         try {
             socketChannel = SocketChannel.open();
             selector = Selector.open();
@@ -49,9 +48,9 @@ public class GroupClient {
     }
 
     private void init(SocketAddress inetSocketAddress) throws IOException {
-        if(!socketChannel.connect(inetSocketAddress)) {
+        if (!socketChannel.connect(inetSocketAddress)) {
             // 没有连接成功
-            while (!socketChannel.finishConnect()){
+            while (!socketChannel.finishConnect()) {
                 //客户端连接需要时间
                 System.out.println("客户端连接需要时间，");
             }
@@ -59,7 +58,7 @@ public class GroupClient {
     }
 
     public static void main(String[] args) {
-        GroupClient groupClient = new GroupClient();
+        GroupClient2 groupClient = new GroupClient2();
 
         Runtime.getRuntime().addShutdownHook(new Thread(() -> groupClient.close()));
 
