@@ -82,7 +82,7 @@ public class GroupServer {
 
 
                 } else {
-                    log.info("没有监听到事件,请等待1秒");
+//                    log.info("没有监听到事件,请等待1秒");
                 }
             }
         } catch (IOException e) {
@@ -122,7 +122,7 @@ public class GroupServer {
             }
         } catch (IOException e) {
             try {
-                log.error("客户端{}:离线了", clientSocket.getRemoteAddress(), e);
+                log.error("客户端{}:离线了", clientSocket.getRemoteAddress());
                 key.cancel();
                 clientSocket.close();
             } catch (IOException ex) {
@@ -135,7 +135,7 @@ public class GroupServer {
 
     private void sendMsgToOtherClient(String msg, SocketChannel selfClient) throws IOException {
         log.info("客户端{}:消息转发中", selfClient.getRemoteAddress());
-
+        msg = selfClient.getRemoteAddress() + ":" + msg;
         for (SelectionKey key : selector.keys()) {
             Channel client = key.channel();
 
