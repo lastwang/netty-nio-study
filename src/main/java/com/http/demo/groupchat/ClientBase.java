@@ -51,17 +51,17 @@ public class ClientBase {
 
     public ClientBase() {
         try {
-            socketChannel = SocketChannel.open();
+            socketChannel = SocketChannel.open(new InetSocketAddress(HOST, SERVER_PORT));
             selector = Selector.open();
             socketChannel.configureBlocking(false);
-
-            socketChannel.socket().bind(new InetSocketAddress(HOST, PORT));
+//            socketChannel.socket();
+//            socketChannel.socket().bind(new InetSocketAddress(HOST, PORT));
 
             socketChannel.register(selector, SelectionKey.OP_READ);
 
             this.userName = socketChannel.getLocalAddress().toString().substring(1);
 
-            init(new InetSocketAddress(SERVER_HOST, SERVER_PORT));
+//            init(new InetSocketAddress(SERVER_HOST, SERVER_PORT));
         } catch (IOException e) {
             log.error("客户端初始化失败!", e);
         }
