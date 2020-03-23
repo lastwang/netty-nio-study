@@ -24,7 +24,7 @@ public class NioServer {
 
         while (true) {
             if (selector.select(1000) == 0) {
-                System.out.println("等待一秒!");
+                System.out.println("没有监听到事件,等待一秒!");
                 continue;
             }
 
@@ -71,6 +71,7 @@ public class NioServer {
                     if (read < 0) {
                         next.cancel();
                         channel.close();
+                        System.out.println("我要关闭了！");
                     }
 
                     if(read == 0){
