@@ -4,6 +4,7 @@ import com.http.demo.jedis.RedisClient;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 
@@ -33,16 +34,13 @@ public class HttpClientBase {
         ExecutorService executorService = Executors.newFixedThreadPool(8);
 
         final CountDownLatch countDownLatch = new CountDownLatch(5000);
-        CloseableHttpClient httpClient = HttpClients.createMinimal();
+        CloseableHttpClient httpClient = new DefaultHttpClient();
         try (RedisClient redisClient = RedisClient.getInstance()) {
             HttpPost post = new HttpPost("http://127.0.0.1:8012/test");
             System.out.println("开始！");
             for (int i = 0; i < 5000; i++) {
                 executorService.execute(() -> {
                     try {
-                        synchronized (this) {
-                            System.out.println("countDownLatch:" + countDownLatch.getCount());
-                        }
                         CloseableHttpResponse execute = httpClient.execute(post);
 
 

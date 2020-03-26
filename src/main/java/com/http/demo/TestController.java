@@ -10,9 +10,10 @@ public class TestController {
 
     static AtomicInteger atomicInteger = new AtomicInteger(0);
     @RequestMapping("test")
-    public String hello() {
+    public String hello() throws InterruptedException {
         atomicInteger.addAndGet(1);
         System.out.println(atomicInteger.get());
+        Thread.sleep(50);
         return "hello undertow";
     }
 }
