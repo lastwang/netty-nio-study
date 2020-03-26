@@ -1,13 +1,18 @@
 package com.http.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.concurrent.atomic.AtomicInteger;
 
 @RestController
 public class TestController {
 
-    @GetMapping("test")
+    static AtomicInteger atomicInteger = new AtomicInteger(0);
+    @RequestMapping("test")
     public String hello() {
+        atomicInteger.addAndGet(1);
+        System.out.println(atomicInteger.get());
         return "hello undertow";
     }
 }

@@ -1,10 +1,10 @@
 
 server:
   port: 8012
-  ssl:
-    key-store: keystore.p12
-    key-store-password: 123456
-    key-password: 123456
+#  ssl:
+#    key-store: keystore.p12
+#    key-store-password: 123456
+#    key-password: 123456
 #    trust-store: d:\tomcat.keystor
 #    trust-store-password: 123456
 #    protocol: TLS
@@ -17,7 +17,7 @@ server:
     buffer-size: 1024
     max-http-post-size: 0
   http2:
-    enabled: true
+    enabled: false
 
 spring:
   profiles:
