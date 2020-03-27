@@ -1,6 +1,8 @@
 package com.http.demo.jedis;
 
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.Protocol;
@@ -10,6 +12,8 @@ import java.io.IOException;
 import java.util.function.Function;
 
 public class RedisClient implements Closeable {
+
+    private static final Logger log = LoggerFactory.getLogger(RedisClient.class);
 
     private JedisPool jedisPool;
 
@@ -54,7 +58,7 @@ public class RedisClient implements Closeable {
         try (Jedis jedis = jedisPool.getResource()) {
             return function.apply(jedis);
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("redis操作错误!", e);
         }
         return null;
     }
