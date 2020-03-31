@@ -54,6 +54,12 @@
 		</dependency>
 
 		<dependency>
+			<groupId>org.quartz-scheduler</groupId>
+			<artifactId>quartz</artifactId>
+			<version>2.3.2</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
 			<version>4.5.12</version>
@@ -65,16 +71,6 @@
 			<version>3.2.0</version>
 		</dependency>
 
-<!--		<dependency>-->
-<!--			<groupId>org.elasticsearch.client</groupId>-->
-<!--			<artifactId>transport</artifactId>-->
-<!--			<version>6.7.1</version>-->
-<!--		</dependency>-->
-<!--		<dependency>-->
-<!--			<groupId>org.elasticsearch.client</groupId>-->
-<!--			<artifactId>transport</artifactId>-->
-<!--			<version>5.6.16</version>-->
-<!--		</dependency>-->
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>
