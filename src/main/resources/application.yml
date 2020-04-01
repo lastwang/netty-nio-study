@@ -22,3 +22,15 @@ server:
 spring:
   profiles:
     active: dev
+
+  dataSource:
+    url: jdbc:mariadb:127.0.0.1:3306/test
+    username: root
+    password: wang
+    driver-class-name: org.mariadb.jdbc.Driver
+    connection-test-query: SELECT 1 FROM DUAL
+    connection-timeout: 30000
+    maximum-pool-size: 20
+    max-lifetime: 1800000
+    minimum-idle: 5
+
