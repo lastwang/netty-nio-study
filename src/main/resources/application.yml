@@ -22,9 +22,8 @@ server:
 spring:
   profiles:
     active: dev
-
   dataSource:
-    url: jdbc:mariadb:127.0.0.1:3306/test
+    url: jdbc:mariadb://127.0.0.1:3306/test
     username: root
     password: wang
     driver-class-name: org.mariadb.jdbc.Driver
@@ -33,4 +32,7 @@ spring:
     maximum-pool-size: 20
     max-lifetime: 1800000
     minimum-idle: 5
+
+quartz:
+  cronExpression: 0/5 * 8-20 * * ?
 

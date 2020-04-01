@@ -1,5 +1,6 @@
 package com.http.demo;
 
+import org.quartz.simpl.SimpleThreadPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -12,7 +13,6 @@ public class HttpApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(HttpApplication.class, args);
-		log.error("ok");
 	}
 
 }
