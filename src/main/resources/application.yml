@@ -34,5 +34,5 @@ spring:
     minimum-idle: 5
 
 quartz:
-  cronExpression: 0/5 * 8-20 * * ?
+  cronExpression: 0 0 0 ? ? ? *
 
