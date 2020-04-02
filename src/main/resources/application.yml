@@ -1,6 +1,6 @@
 
 server:
-  port: 8012
+  port: 8013
 #  ssl:
 #    key-store: keystore.p12
 #    key-store-password: 123456
@@ -34,5 +34,5 @@ spring:
     minimum-idle: 5
 
 quartz:
-  cronExpression: 0 0 0 ? ? ? *
+  cronExpression: 0 * * * * ?
 
