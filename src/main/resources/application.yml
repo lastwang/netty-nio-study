@@ -23,16 +23,42 @@ spring:
   profiles:
     active: dev
   dataSource:
+    type: com.alibaba.druid.pool.DruidDataSource
     url: jdbc:mariadb://127.0.0.1:3306/test
     username: root
     password: wang
-    driver-class-name: org.mariadb.jdbc.Driver
-    connection-test-query: SELECT 1 FROM DUAL
-    connection-timeout: 30000
-    maximum-pool-size: 20
-    max-lifetime: 1800000
-    minimum-idle: 5
+    driverClassName: org.mariadb.jdbc.Driver
+    initialSize: 100
+    minIdle: 100
+    maxActive: 100
+    maxWait: 10000
+    validationQuery: SELECT 1 FROM DUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    exceptionSorter: true
+    testOnReturn: false
+    poolPreparedStatements: true
+    filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 10000
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+    useGlobalDataSourceStat: true
+#    spring.datasource.testWhileIdle=true
+#    spring.datasource.testOnBorrow=false
+#    spring.datasource.exceptionSorter=true
+#    spring.datasource.testOnReturn=false
+#    spring.datasource.poolPreparedStatements=true
+#    spring.datasource.filters=stat,wall,log4j
+#    spring.datasource.maxPoolPreparedStatementPerConnectionSize=20
+#    spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#    spring.datasource.useGlobalDataSourceStat=true
+#    driver-class-name: org.mariadb.jdbc.Driver
 
+#    connection-test-query: SELECT 1 FROM DUAL
+#    connection-timeout: 30000
+#    maximum-pool-size: 20
+#    max-lifetime: 1800000
+#    minimum-idle: 15
+#  对配置的属性不懂得的，可以https://github.com/alibaba/druid/wiki/%E9%85%8D%E7%BD%AE_DruidDataSource%E5%8F%82%E8%80%83%E9%85%8D%E7%BD%AE       或则 参考  DruidDataSource.class
 quartz:
   cronExpression: 0 * * * * ?
 
