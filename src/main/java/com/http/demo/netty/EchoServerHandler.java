@@ -31,4 +31,5 @@ public class EchoServerHandler extends ChannelInboundHandlerAdapter {
         log.error("异常捕获:", cause);
         ctx.close();
     }
+
 }

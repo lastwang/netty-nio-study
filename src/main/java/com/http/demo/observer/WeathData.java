@@ -1,6 +1,5 @@
 package com.http.demo.observer;
 
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.Observable;
 
