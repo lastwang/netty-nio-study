@@ -1,5 +1,6 @@
 package com.http.demo.netty.client;
 
+import com.http.demo.netty.EchoNettyConfig;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
@@ -43,6 +44,6 @@ public class EchoClient {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        new EchoClient("127.0.0.1", 8080).start();
+        new EchoClient(EchoNettyConfig.LOCAL_HOST, EchoNettyConfig.PORT).start();
     }
 }

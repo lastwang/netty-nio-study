@@ -21,8 +21,8 @@ public class EchoServer {
         this.port = port;
     }
 
-     private static class INSTANCE {
-        private static final EchoServer echoServer = new EchoServer(8080);
+    private static class INSTANCE {
+        private static final EchoServer echoServer = new EchoServer(EchoNettyConfig.PORT);
     }
 
     public static EchoServer getInstance() {
@@ -49,7 +49,7 @@ public class EchoServer {
                     .localAddress(new InetSocketAddress(port));
             ChannelFuture f = bootstrap.bind().sync();
             f.channel().closeFuture().sync();
-        }finally {
+        } finally {
             group.shutdownGracefully().sync();
             log.error("Netty Server is stopping");
         }
@@ -58,7 +58,7 @@ public class EchoServer {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        EchoServer server = new EchoServer(8080);
+        EchoServer server = new EchoServer(EchoNettyConfig.PORT);
 
         server.start();
     }
