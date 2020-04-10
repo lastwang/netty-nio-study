@@ -1,4 +1,4 @@
-package com.http.demo.netty;
+package com.http.demo.nio;
 
 public class EchoNettyConfig {
 

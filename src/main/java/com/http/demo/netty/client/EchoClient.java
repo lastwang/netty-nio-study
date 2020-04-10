@@ -1,6 +1,6 @@
 package com.http.demo.netty.client;
 
-import com.http.demo.netty.EchoNettyConfig;
+import com.http.demo.nio.EchoNettyConfig;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
