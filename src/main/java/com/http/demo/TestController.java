@@ -21,7 +21,7 @@ public class TestController {
 
     private static final Logger log = LoggerFactory.getLogger(TestController.class);
 
-    public static void main(String[] args) {
-        log.info("wada,{}", (Object) args);
-    }
+//    public static void main(String[] args) {
+//        log.info("wada,{}", (Object) args);
+//    }
 }

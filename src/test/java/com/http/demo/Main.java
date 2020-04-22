@@ -1,12 +1,6 @@
 package com.http.demo;
 
-import org.junit.jupiter.api.Test;
-
 import java.util.Scanner;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
-import java.util.stream.Stream;
 
 public class Main {
 
@@ -27,52 +21,52 @@ public class Main {
 //
 //    }
 
-    @Test
-    public void test1() {
 
-        char[][] map = new char[][]{{'.', 'X', '.', '.'}, {'.', '.', '.', '.'}, {'X', 'X', '.', '.'}, {'.', '.', '.', '.'}};
-        deepSearch(map, map.length, map.length);
+    public static void main(String[] args) {
 
-        System.out.println(max_sum);
+//        char[][] map = new char[][]{{'.', 'X', '.', '.'}, {'.', '.', '.', '.'}, {'X', 'X', '.', '.'}, {'.', '.', '.', '.'}};
+//        deepSearch(map, map.length, map.length);
+//
+//        System.out.println(max_sum);
 //        int count = 0;
-//        Scanner scanner = new Scanner(System.in);
-//        while (scanner.hasNext()) {
-//
-//            int i = scanner.nextInt();
-//
-//            char[][] len = new char[i][];
-//
-//            // 输入
-//            for (int row = 0; row < i; row++) {
-//                String s = scanner.nextLine();
-//                len[row] = s.toCharArray();
-//            }
-//
-//            //放碉堡
-//            count = deepSearch(len, i, i);
-//
-//        }
+
+        Scanner scanner = new Scanner(System.in);
+        while (scanner.hasNext()) {
+
+            int i = scanner.nextInt();
+
+            char[][] len = new char[i][];
+
+            // 输入
+            for (int row = 0; row < i; row++) {
+                String s = scanner.nextLine();
+                len[row] = s.toCharArray();
+            }
+
+            //放碉堡
+            int count = deepSearch(len, i, i);
+            System.out.println(count);
+        }
     }
 
-    private int count = 0;
+    private static int count = 0;
 
-    private int max_sum = 0;
-    private int max_num = 0;
+    private static int max_sum = 0;
+    private static int max_num = 0;
 
-    char[][] copyMap;
+   static   char[][] copyMap;
     //为放过
-    private int flag = 0;
+    private static int flag = 0;
 
-    int deepSearch(char[][] map, final int row, final int col) {
+   static int deepSearch(char[][] map, final int row, final int col) {
 
         for (int i = 0; i < row; i++) {
 
             for (int j = 0; j < col; j++) {
 
 
-
-                max_num =0;
-                flag =0;
+                max_num = 0;
+                flag = 0;
                 if (map[i][j] == '.') {
 //                    disPlay(map, row, col);
 
@@ -89,7 +83,6 @@ public class Main {
 
 
                     map[i][j] = '*';
-
 
 
                     // 上
@@ -128,7 +121,7 @@ public class Main {
                         }
                     }
 
-                    disPlay(map,row,col);
+//                    disPlay(map,row,col);
                     // 接着往下放
                     count = deepSearch(map, row, col) - 1;
 
@@ -147,24 +140,22 @@ public class Main {
                     count--;
                 }
 
-                if(max_sum<max_num){
+                if (max_sum < max_num) {
                     max_sum = max_num;
-                    max_num =0;
+                    max_num = 0;
                 }
 
 
-
-
                 if (i == row - 1 && j == col - 1) {
-                    if(count>max_num){
-                        max_num =count;
+                    if (count > max_num) {
+                        max_num = count;
                     }
                     return count;
                 }
 
             }
         }
-        System.out.println("*****");
+//        System.out.println("*****");
         return count;
     }
 
@@ -180,53 +171,4 @@ public class Main {
         System.out.println("-------");
     }
 
-
-
-
-
-
-
-
-
-
-        public static void main(String[] args) throws InterruptedException {
-            Stream<Logger> s = Stream.of(
-                    new Logger("Error "),
-                    new Logger("Warning "),
-                    new Logger("Debug "));
-            ExecutorService es =
-                    Executors.newCachedThreadPool();
-            s.sequential().forEach(l -> es.execute(l));
-            es.shutdown();
-            es.awaitTermination(10, TimeUnit.SECONDS);
-        }
-
-}
-class Logger implements Runnable {
-    String msg;
-    public Logger(String msg) {
-        this.msg = msg;
-    }
-    public void run() {
-        System.out.print(msg);
-    }
-}
-class MyThread extends Thread {
-
-    public void run() {
-        Sync sync = new Sync();
-        sync.test();
-    }
-}
-class Sync {
-
-    public static synchronized void test() {
-        System.out.println("test开始..");
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        System.out.println("test结束..");
-    }
 }
