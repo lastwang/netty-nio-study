@@ -32,36 +32,37 @@ management:
 spring:
   profiles:
     active: dev
-  dataSource:
-    type: com.alibaba.druid.pool.DruidDataSource
-    url: jdbc:mariadb://127.0.0.1:3306/test
-    username: root
-    password: wang
-    driverClassName: org.mariadb.jdbc.Driver
-    initialSize: 100
-    minIdle: 100
-    maxActive: 100
-    maxWait: 10000
-    validationQuery: SELECT 1 FROM DUAL
-    testWhileIdle: true
-    testOnBorrow: false
-    exceptionSorter: true
-    testOnReturn: false
-    poolPreparedStatements: true
-    filters: stat,wall,log4j
-    maxPoolPreparedStatementPerConnectionSize: 10000
-    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-    useGlobalDataSourceStat: true
-#    spring.datasource.testWhileIdle=true
-#    spring.datasource.testOnBorrow=false
-#    spring.datasource.exceptionSorter=true
-#    spring.datasource.testOnReturn=false
-#    spring.datasource.poolPreparedStatements=true
-#    spring.datasource.filters=stat,wall,log4j
-#    spring.datasource.maxPoolPreparedStatementPerConnectionSize=20
-#    spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
-#    spring.datasource.useGlobalDataSourceStat=true
-#    driver-class-name: org.mariadb.jdbc.Driver
+  primary:
+    dataSource:
+      type: com.alibaba.druid.pool.DruidDataSource
+      url: jdbc:mariadb://127.0.0.1:3306/test
+      username: root
+      password: wang
+      driverClassName: org.mariadb.jdbc.Driver
+      initialSize: 100
+      minIdle: 100
+      maxActive: 100
+      maxWait: 10000
+      validationQuery: SELECT 1 FROM DUAL
+      testWhileIdle: true
+      testOnBorrow: false
+      exceptionSorter: true
+      testOnReturn: false
+      poolPreparedStatements: true
+      filters: stat,wall,log4j
+      maxPoolPreparedStatementPerConnectionSize: 10000
+      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+      useGlobalDataSourceStat: true
+#      spring.datasource.testWhileIdle=true
+#      spring.datasource.testOnBorrow=false
+#      spring.datasource.exceptionSorter=true
+#      spring.datasource.testOnReturn=false
+#      spring.datasource.poolPreparedStatements=true
+#      spring.datasource.filters=stat,wall,log4j
+#      spring.datasource.maxPoolPreparedStatementPerConnectionSize=20
+#      spring.datasource.connectionProperties=druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+#      spring.datasource.useGlobalDataSourceStat=true
+#      driver-class-name: org.mariadb.jdbc.Driver
 
 #    connection-test-query: SELECT 1 FROM DUAL
 #    connection-timeout: 30000
