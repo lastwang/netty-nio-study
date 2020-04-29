@@ -82,7 +82,7 @@ public class Config {
          * 配置监控统计拦截的filters
          */
         try {
-            dataSource.setFilters("stat,wall,log4j");
+            dataSource.setFilters("stat");
         } catch (SQLException throwables) {
             log.error("配置监控统计拦截的filter error",throwables);
         }
