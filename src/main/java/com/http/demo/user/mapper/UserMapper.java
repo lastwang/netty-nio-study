@@ -1,12 +1,10 @@
 package com.http.demo.user.mapper;
 
+import com.http.demo.base.BaseMapper;
 import com.http.demo.user.User;
 import org.apache.ibatis.annotations.Mapper;
 
-import java.util.List;
-
 @Mapper
-public interface UserMapper {
+public interface UserMapper extends BaseMapper<User,Integer> {
 
-    List<User> getAll();
 }

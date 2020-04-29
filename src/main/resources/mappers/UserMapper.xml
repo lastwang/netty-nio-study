@@ -4,4 +4,28 @@
     <select id="getAll" resultType="com.http.demo.user.User">
         select user_id "userId",user_name "userName" from user
     </select>
+
+    <insert id="insert" parameterType="com.http.demo.user.User">
+        insert into user (user_id,user_name) values (#{userId},#{userName})
+    </insert>
+
+    <select id="getObjectsByRecord" resultType="com.http.demo.user.User">
+        select user_id "userId",user_name "userName" from user
+        <where>
+            1=1
+            <if test="t.userId != null">
+               and user_id = #{t.userId}
+            </if>
+            <if test="t.userName != null">
+                and user_name = #{t.userName}
+            </if>
+        </where>
+    </select>
+
+    <select id="getOneByPrimary" parameterType="java.lang.Integer">
+        select user_id "userId",user_name "userName" from user
+        <where>
+            user_id = #{userId}
+        </where>
+    </select>
 </mapper>
