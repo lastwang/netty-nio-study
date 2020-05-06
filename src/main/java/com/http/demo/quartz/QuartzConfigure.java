@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.util.Properties;
 
-@Configuration
+//@Configuration
 public class QuartzConfigure {
 
     // 配置文件路径
