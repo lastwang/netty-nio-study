@@ -9,15 +9,15 @@
         insert into user (user_id,user_name) values (#{userId},#{userName})
     </insert>
 
-    <select id="getObjectsByRecord" resultType="com.http.demo.user.User">
+    <select id="getObjectsByRecord" resultType="com.http.demo.user.User" parameterType="map">
         select user_id "userId",user_name "userName" from user
         <where>
             1=1
-            <if test="t.userId != null">
-               and user_id = #{t.userId}
+            <if test="userId != null">
+               and user_id = #{userId}
             </if>
-            <if test="t.userName != null">
-                and user_name = #{t.userName}
+            <if test="userName != null">
+                and user_name = #{userName}
             </if>
         </where>
     </select>

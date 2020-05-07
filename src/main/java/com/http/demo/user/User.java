@@ -1,10 +1,14 @@
 package com.http.demo.user;
 
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class User {
 
     private Integer userId;
 
     private String userName;
+
+    private String password = "123";
 
     public Integer getUserId() {
         return userId;
@@ -22,11 +26,20 @@ public class User {
         this.userName = userName;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     @Override
     public String toString() {
-        return new org.apache.commons.lang3.builder.ToStringBuilder(this)
+        return new ToStringBuilder(this)
                 .append("userId", userId)
                 .append("userName", userName)
+                .append("password", password)
                 .toString();
     }
 }
