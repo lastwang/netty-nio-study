@@ -11,7 +11,6 @@ public class WebSocketController {
 
     private Session session;
 
-//    private Map<String, WebSocketSi>  webSocketSession = new ConcurrentHashMap<>();
 
 
 }
