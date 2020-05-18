@@ -61,6 +61,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>29.0-jre</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.apache.shiro</groupId>
             <artifactId>shiro-spring-boot-web-starter</artifactId>
             <version>1.5.3</version>
