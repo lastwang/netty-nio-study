@@ -21,6 +21,7 @@ public class ShiroConfig {
         shiroFilterChainDefinition.addPathDefinition("/login/**", "anon");
         shiroFilterChainDefinition.addPathDefinition("/druid/**", "anon");
         shiroFilterChainDefinition.addPathDefinition("/api/**", "anon");
+        shiroFilterChainDefinition.addPathDefinition("/hello.html", "anon");
         shiroFilterChainDefinition.addPathDefinition("/**", "authc");
 
         return shiroFilterChainDefinition;
