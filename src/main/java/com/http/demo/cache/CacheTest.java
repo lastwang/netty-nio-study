@@ -64,8 +64,7 @@ public class CacheTest {
         System.out.println(Objects.requireNonNull(softReference.get()).index);
     }
 
-    public static void main(String[] args) throws InterruptedException {
-
+    void test4() throws InterruptedException {
         CacheTest test = new CacheTest(1);
         ReferenceQueue<CacheTest> q = new ReferenceQueue<>();
         MyPhantomReference<CacheTest> phantomReference = new MyPhantomReference<>(test, q, 1);
@@ -77,6 +76,17 @@ public class CacheTest {
 
         Reference<? extends CacheTest> remove = q.remove();
         ((MyPhantomReference) remove).doSomething();
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        SoftLRUCache<String, byte[]> softLRUCache = new SoftLRUCache<>(100);
+
+        for (int i = 0; i < 100; i++) {
+            softLRUCache.putDef(String.valueOf(i), new byte[1024 * 1024 * 2]);
+
+            TimeUnit.MILLISECONDS.sleep(500);
+            System.out.println("index:" + i + " join cache");
+        }
     }
 
     private byte[] cache = new byte[1024 * 1024];
