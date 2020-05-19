@@ -3,7 +3,7 @@ package com.http.demo.cache;
 public class CacheTest {
 
     public static void main(String[] args) {
-        VerificationCache<String, String> cache = new VerificationCache<>(3);
+        VerificationLinkCache<String, String> cache = new VerificationLinkCache<>(3);
 
         cache.put("1", "1");
         cache.put("2", "2");

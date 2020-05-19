@@ -3,6 +3,7 @@ package com.http.demo.cache;
 import com.google.common.base.Preconditions;
 import com.http.demo.cache.intf.Cache;
 
+import javax.annotation.concurrent.NotThreadSafe;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -10,17 +11,18 @@ import java.util.Map;
  * 验证信息不会频繁更新
  * 将验证消息加载到本地jvm内存中,减少不必要的性能损害
  */
-public class VerificationCache<K, V> implements Cache<K, V> {
+@NotThreadSafe
+public class VerificationHashCache<K, V> implements Cache<K, V> {
 
     private final VerificationMap<K, V> cache;
 
-    public VerificationCache(int limit) {
+    public VerificationHashCache(int limit) {
         Preconditions.checkArgument(limit > 0, "limit must large than zero");
         cache = new VerificationMap<>(limit);
         this.limit = limit;
     }
 
-    public VerificationCache() {
+    public VerificationHashCache() {
         this.limit = 3;
         cache = new VerificationMap<>(limit);
     }
