@@ -2,7 +2,6 @@ package com.http.demo.cache;
 
 import com.google.common.base.Preconditions;
 import com.http.demo.cache.intf.Cache;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
