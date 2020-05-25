@@ -7,19 +7,19 @@ public class SkipList {
     private static final int DEFAULT_HEIGHT = 4;
 
     // 头节点
-    private Node header;
+    private final Node header;
 
     // 尾节点
-    private Node tail;
+    private final Node tail;
 
     //当前节点,用于构建跳表
     private Node current;
 
-    private class Node {
+    private static class Node {
 
-        private int data;
+        private final int data;
 
-        private Node[] forword;
+        private final Node[] forword;
 
         public Node(int data, int level) {
             this.data = data;
