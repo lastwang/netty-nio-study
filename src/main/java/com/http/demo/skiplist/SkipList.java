@@ -69,19 +69,19 @@ public class SkipList {
             }
         } else {
             // 暂时选择高度固定
-//            if(header.forword.length>= node.forword.length){
-//                for (int i = current.forword.length - 1; i >= 0; i--) {
-//
-//                    current.forword[i] = node;
-//                    node.forword[i] = tail;
-//                }
-//
-//                for(int i = current.forword.length; i< node.forword.length;i++){
-//                    header.forword[i] = node;
-//                    node.forword[i] = tail;
-//
-//                }
-//            }
+            if(header.forword.length>= node.forword.length){
+                for (int i = current.forword.length - 1; i >= 0; i--) {
+
+                    current.forword[i] = node;
+                    node.forword[i] = tail;
+                }
+
+                for(int i = current.forword.length; i< node.forword.length;i++){
+                    header.forword[i] = node;
+                    node.forword[i] = tail;
+
+                }
+            }
         }
         current = node;
     }
