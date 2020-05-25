@@ -64,14 +64,14 @@ public class SkipList {
             }
         } else {
             // 暂时选择高度固定
-            if(header.forword.length>= node.forword.length){
+            if (header.forword.length >= node.forword.length) {
                 for (int i = current.forword.length - 1; i >= 0; i--) {
 
                     current.forword[i] = node;
                     node.forword[i] = tail;
                 }
 
-                for(int i = current.forword.length; i< node.forword.length;i++){
+                for (int i = current.forword.length; i < node.forword.length; i++) {
                     header.forword[i] = node;
                     node.forword[i] = tail;
 
@@ -85,22 +85,20 @@ public class SkipList {
     private static class Itr implements Iterator<Integer> {
         private Node node;
 
-        private SkipList skipList;
-
         @Override
         public boolean hasNext() {
-            return this.node.forword != null && this.node.forword[0] != null;
+            return node != null;
         }
 
         @Override
         public Integer next() {
+            int data = this.node.data;
             this.node = this.node.forword[0];
-            return node.data;
+            return data;
         }
 
         public Itr(SkipList skipList) {
-            this.skipList = skipList;
-            this.node = this.skipList.header;
+            this.node = skipList.header;
         }
 
     }
