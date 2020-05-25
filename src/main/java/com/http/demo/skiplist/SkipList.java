@@ -6,10 +6,6 @@ public class SkipList {
 
     private static final int DEFAULT_HEIGHT = 4;
 
-    private int size;
-
-    private int max_level;
-
     // 头节点
     private Node header;
 
@@ -33,7 +29,6 @@ public class SkipList {
     }
 
     public SkipList() {
-        max_level = DEFAULT_HEIGHT;
         header = new Node(Integer.MIN_VALUE, DEFAULT_HEIGHT);
         tail = new Node(Integer.MAX_VALUE, DEFAULT_HEIGHT);
 
