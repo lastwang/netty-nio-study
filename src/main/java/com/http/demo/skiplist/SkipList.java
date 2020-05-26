@@ -103,6 +103,19 @@ public class SkipList {
 
     }
 
+    public void add(int data) {
+        current = header;
+
+        while (current != null) {
+            if (current.data < data) {
+                // 右移动
+            } else {
+                // 下移动
+
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Integer[] a = new Integer[10];
         Random random = new Random();
